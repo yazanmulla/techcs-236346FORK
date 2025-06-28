@@ -25,9 +25,9 @@ def asm(l, start_addr=0x0):
         for instr in l:
             if isinstance(instr, list):
                 for i in first_pass(instr): yield i
-            elif isinstance(instr, str):
+            elif isinstance(instr, str): # label 'label1:'
                 yield Label(instr)
-            else:
+            else: # tuple (op, arg)
                 yield instr
                 
     def second_pass(l):
@@ -39,7 +39,7 @@ def asm(l, start_addr=0x0):
                 yield instr
                 addr += 1
 
-    def warg(op, arg):
+    def warg(op, arg = None): 
         if isinstance(op, str): op = isa.CODES[op]
         if isinstance(arg, Label): arg = labels[arg.name]
         elif isinstance(arg, str):
