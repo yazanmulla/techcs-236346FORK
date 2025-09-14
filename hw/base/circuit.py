@@ -38,7 +38,7 @@ def net_to_smt(wb, mems = None):
                 b = If(wires[net.args[0].name] < wires[net.args[1].name], BitVecVal(1, 1), BitVecVal(0, 1))
                 assertions.append(b == wires[net.dests[0].name])
             case '=':
-                pass
+                
             case 's':
                 assertions.append()
                 
